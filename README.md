@@ -37,6 +37,12 @@ Após Salvar, vá em Mappers e configure new mapper, selecionando o tipo Audienc
 
 Em seguida defina um Name a sua escolha e em Included Client Audience, selecione o nome do cliente para o qual esta sendo criado o scope.
 
+Habilitar o 'Add to access token' no momento de configuração do Mapper.
+
+Repetir este passo para a criação de Client scopes de todos os 3 Clients inicialmente citados.
+
+Criar um admin scope que não tera mapeamentos porem no Scope sera assinalado o tipo default-roles-[Realm name]
+
 
 
 
