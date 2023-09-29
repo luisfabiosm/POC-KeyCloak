@@ -43,6 +43,54 @@ Repetir este passo para a criação de Client scopes de todos os 3 Clients inici
 
 Criar um admin scope que não tera mapeamentos porem no Scope sera assinalado o tipo default-roles-[Realm name]
 
+A ideia e para o Client SistemaAdmin, adicionar os Client scopes de: sistemaAdmin, SistemaA e SistemaB.
+
+Nos demais, adicionar ao Client SistemaA apenas seu client scope, da mesma maneira que o CLient SistemaB.
+
+
+4 - Regsitrar nas APIs os client que servirão para autenticar os requests.
+
+Nos Clients do Keycloak em Actions, selecionar a opção Download Adapter Config e de la copiar o json e coloca-lo no appsettings das APIs.
+
+Coloque o do SistemaA na API.A e dos SistemaB na API.B. 
+
+Ficando assim por exemplo:
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "Keycloak": {
+    "realm": "poc",
+    "auth-server-url": "http://localhost:8089/",
+    "ssl-required": "none",
+    "resource": "sistemaA",
+    "verify-token-audience": true,
+    "credentials": {
+      "secret": "RTqcFaCOmGUvbPF9WkxNJMog8AjNyOWN"
+    },
+    "confidential-port": 0
+  }
+}
+
+Agora cada API possui uma maneira de autenticacão, e quem validará o token recebido e o keycloak definido em:  "auth-server-url".
+
+
+Portanto, os tokens gerados com a secret da credencial do cliente SistemaA so serão autenticados pela API.A que utiliza a mesma secret , desta mesma maneira para a API.B com a secrete de SistemaB.
+
+Porem os tokens gerados pelo Client SistemaAdmin, serão válidos tanto para a API.A como a API.B, uma vez que SistemaAdmin tem em seuS scopes tanto os de SistemaA como SistemaB.
+
+5 - Criar um user e password no Keycloak
+
+6 - Gerar Token
+A Geração do toke pode ser feita na rota: http://localhost:8089/realms/poc/protocol/openid-connect/token
+
+curl --data "grant_type=password&client_id=sistemaA-client&username=develop&password=develop-password&client_secret=RTqcFaCOmGUvbPF9WkxNJMog8AjNyOWN" \
+    localhost:8980/realms/poc/protocol/openid-connect/token
+
 
 
 
