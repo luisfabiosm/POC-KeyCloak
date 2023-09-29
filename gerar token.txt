@@ -1,4 +1,0 @@
-user: develop
-password: develop-password
-secret: 7ggD7OKAqPtM9DOxDhBwnfRstoDBMicj
-
