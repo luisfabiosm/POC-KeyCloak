@@ -1,0 +1,10 @@
+{
+  "realm": "poc",
+  "auth-server-url": "http://localhost:8089/",
+  "ssl-required": "none",
+  "resource": "sistemaB",
+  "credentials": {
+    "secret": "M99h8SGGYRtqxa3cUieaYU69Ko933fKN"
+  },
+  "confidential-port": 0
+}
